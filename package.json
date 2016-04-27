@@ -38,6 +38,7 @@
     "express": "4.13.3",
     "express-session": "1.11.3",
     "gridfs-stream": "^1.1.1",
+    "kue": "^0.10.5",
     "method-override": "2.3.5",
     "mongodb": "^2.1.0",
     "morgan": "1.6.1",
