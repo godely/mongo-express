@@ -11,7 +11,6 @@ const middleware      = require('./lib/middleware');
 const utils           = require('./lib/utils');
 const updateNotifier  = require('update-notifier');
 const pkg             = require('./package.json');
-const kue             = require('kue');
 
 let app               = express();
 let notifier          = updateNotifier({pkg});
@@ -89,12 +88,6 @@ if (config.basicAuth.username === 'admin' && config.basicAuth.password === 'pass
 if (!config.site.host || config.site.host === '0.0.0.0') {
   console.error(clc.red('Server is open to allow connections from anyone (0.0.0.0)'));
 }
-
-app.use('/admin/queue', basicAuth(
-      process.env.ME_CONFIG_MONGODB_ADMINUSERNAME,
-      process.env.ME_CONFIG_MONGODB_ADMINPASSWORD
-));
-app.use('/admin/queue', kue.app);
 
 app.use(config.site.baseUrl, middleware(config));
 app.set('read_only',      config.options.readOnly       || false);
